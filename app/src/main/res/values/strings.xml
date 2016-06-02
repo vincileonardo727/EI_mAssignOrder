@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">EI_mAssignOrder</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="st_unassigned_orders">Unassigned Orders</string>
+    <string name="st_assigned_orders">Assigned Orders</string>
+    <string name="title_ActUnAssigned">Unassigned Activity</string>
+
+</resources>

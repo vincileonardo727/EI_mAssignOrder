@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center"
+android:minHeight="?android:attr/listPreferredItemHeight"
+android:orientation="vertical">
+<!--android:background="@drawable/touch_selector">-->
+
+    <TextView
+        android:id="@+id/list_item_unassigned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/ei_gWhite"
+        android:background="@color/ei_green"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="20sp"
+        android:clickable="true"
+        android:onClick="click"
+    android:text="@string/st_unassigned_orders"/>
+
+    <TextView
+        android:id="@+id/list_item_assigned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/ei_gWhite"
+        android:background="@color/ei_green"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:layout_marginTop="10px"
+    android:text="@string/st_assigned_orders"/>
+</LinearLayout>
