@@ -26,7 +26,7 @@ public class OrderDbHelper extends SQLiteOpenHelper {
         // Create a table to hold locations.  A location consists of the string supplied in the
         // location setting, the city name, and the latitude and longitude
         final String SQL_CREATE_ORDER_TABLE = "CREATE TABLE " + OrderEntry.TABLE_NAME + " (" +
-                OrderEntry._ID + " INTEGER PRIMARY KEY," +
+                OrderEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
 //                OrderEntry.COLUMN_LOCATION_SETTING + " TEXT UNIQUE NOT NULL, " +
                 OrderEntry.COLUMN_CUST_NAME + " TEXT NOT NULL, " +
                 OrderEntry.COLUMN_ADDRESS + " TEXT NOT NULL, " +

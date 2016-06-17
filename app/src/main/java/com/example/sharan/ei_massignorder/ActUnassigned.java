@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.sharan.ei_massignorder.sync.OrderSyncAdapter;
+
 /**
  * Created by sharan on 1/6/16.
  */
@@ -29,7 +31,7 @@ public class ActUnassigned extends ActionBarActivity implements FragOrders.Callb
                 .findFragmentById(R.id.frag_orders));
 //        forecastFragment.setUseTodayLayout(!mTwoPane);
 //
-//        SunshineSyncAdapter.initializeSyncAdapter(this);
+        OrderSyncAdapter.initializeSyncAdapter(this);
     }
 
     @Override
@@ -61,7 +63,7 @@ public class ActUnassigned extends ActionBarActivity implements FragOrders.Callb
 //        String location = Utility.getPreferredLocation( this );
 //        // update the location in our second pane using the fragment manager
 //        if (location != null && !location.equals(mLocation)) {
-//            ForecastFragment ff = (ForecastFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_forecast);
+//            FragOrders ff = (FragOrders)getSupportFragmentManager().findFragmentById(R.id.fragment_forecast);
 //            if ( null != ff ) {
 //                ff.onLocationChanged();
 //            }
@@ -76,7 +78,7 @@ public class ActUnassigned extends ActionBarActivity implements FragOrders.Callb
     @Override
     public void onItemSelected(Uri contentUri) {
 
-        Intent intent = new Intent(this, DetailActivity_U.class)
+        Intent intent = new Intent(this, DetailActivityUn.class)
                 .setData(contentUri);
         startActivity(intent);
     }

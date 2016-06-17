@@ -2,6 +2,7 @@ package com.example.sharan.ei_massignorder.data;
 
 /**
  * Created by sharan on 7/6/16.
+ *
  */
 
 
@@ -57,7 +58,7 @@ public class OrderContract {
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ORDER;
 
         // Table name
-        public static final String TABLE_NAME = "order";
+        public static final String TABLE_NAME = "orders";
 
         // The location setting string is what will be sent to openweathermap
         // as the location query.
@@ -83,6 +84,9 @@ public class OrderContract {
                         return uri.getPathSegments().get(1);
                     }
 
+/*        public static Uri buildOrderUri(String id) {
+            return CONTENT_URI.buildUpon().appendPath(id).build();
+        }*/
         public static Uri buildOrderUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
