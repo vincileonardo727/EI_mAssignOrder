@@ -28,14 +28,14 @@ public class OrderAdapter extends CursorAdapter {
         public final TextView iconView;
         public final TextView dateView;
         public final TextView descriptionView;
-        public final TextView highTempView;
+//        public final TextView highTempView;
 //        public final TextView lowTempView;
 
         public ViewHolder(View view) {
             iconView = (TextView) view.findViewById(R.id.list_item_name_textview);
             dateView = (TextView) view.findViewById(R.id.list_item_contact_textview);
             descriptionView = (TextView) view.findViewById(R.id.list_item_address_textview);
-            highTempView = (TextView) view.findViewById(R.id.list_item_fassign_textview);
+//            highTempView = (TextView) view.findViewById(R.id.list_item_fassign_textview);
 //            lowTempView = (TextView) view.findViewById(R.id.list_item_low_textview);
         }
     }
@@ -106,10 +106,10 @@ public class OrderAdapter extends CursorAdapter {
         String contact = cursor.getString(FragOrders.COL_CONTACT);
         // Find TextView and set weather forecast on it
         viewHolder.dateView.setText(contact);
-
+/*
         String fassign = cursor.getString(FragOrders.COL_FASSIGN);
         // Find TextView and set weather forecast on it
-        viewHolder.highTempView.setText(fassign);
+        viewHolder.highTempView.setText(fassign);*/
 
        /* // For accessibility, add a content description to the icon field
         viewHolder.iconView.setContentDescription(description);

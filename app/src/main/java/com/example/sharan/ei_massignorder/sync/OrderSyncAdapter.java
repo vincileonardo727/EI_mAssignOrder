@@ -107,6 +107,10 @@ public class OrderSyncAdapter extends AbstractThreadedSyncAdapter {
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
+            if (urlConnection == null) {
+                Log.v(LOG_TAG, "NOT CONNECTED");
+            }
+
             // Read the input stream into a String
             InputStream inputStream = urlConnection.getInputStream();
             StringBuffer buffer = new StringBuffer();
@@ -181,7 +185,7 @@ public class OrderSyncAdapter extends AbstractThreadedSyncAdapter {
 //        final String OWM_LONGITUDE = "lon";
 //
 //        // Weather information.  Each day's forecast info is an element of the "list" array.
-        final String KEY_RESULT = "RESULT";
+        final String KEY_RESULT = "result";
 //
 //        final String OWM_PRESSURE = "pressure";
 //        final String OWM_HUMIDITY = "humidity";
@@ -281,6 +285,7 @@ public class OrderSyncAdapter extends AbstractThreadedSyncAdapter {
                 orderValues.put(OrderContract.OrderEntry.COLUMN_CUST_NAME, custName);
                 orderValues.put(OrderContract.OrderEntry.COLUMN_CONTACT, custContact);
                 orderValues.put(OrderContract.OrderEntry.COLUMN_ADDRESS, custAddress);
+                orderValues.put(OrderContract.OrderEntry.COLUMN_F_ASSIGNED, flagValue);
 //                weatherValues.put(WeatherContract.WeatherEntry.COLUMN_PRESSURE, pressure);
 //                weatherValues.put(WeatherContract.WeatherEntry.COLUMN_WIND_SPEED, windSpeed);
 //                weatherValues.put(WeatherContract.WeatherEntry.COLUMN_DEGREES, windDirection);
@@ -298,6 +303,7 @@ public class OrderSyncAdapter extends AbstractThreadedSyncAdapter {
                 ContentValues[] cvArray = new ContentValues[cVVector.size()];
                 cVVector.toArray(cvArray);
                 getContext().getContentResolver().bulkInsert(OrderContract.OrderEntry.CONTENT_URI, cvArray);
+                Log.v(LOG_TAG, "Reached here2");
 
                 // delete old data so we don't build up an endless history
                 getContext().getContentResolver().delete(OrderContract.OrderEntry.CONTENT_URI,
@@ -478,6 +484,7 @@ public class OrderSyncAdapter extends AbstractThreadedSyncAdapter {
         bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
         ContentResolver.requestSync(getSyncAccount(context),
                 context.getString(R.string.content_authority), bundle);
+
     }
 
     /**

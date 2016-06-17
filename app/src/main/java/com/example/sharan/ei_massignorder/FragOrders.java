@@ -22,6 +22,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -163,9 +164,9 @@ public class FragOrders extends Fragment implements LoaderManager.LoaderCallback
             // swapout in onLoadFinished.
             mPosition = savedInstanceState.getInt(SELECTED_KEY);
         }
-
+        Log.v(LOG_TAG, "reached here");
         mOrderAdapter.setUseTodayLayout(mUseTodayLayout);
-
+//        OrderSyncAdapter.syncImmediately(getActivity());
         return rootView;
     }
 
@@ -236,7 +237,9 @@ public class FragOrders extends Fragment implements LoaderManager.LoaderCallback
 
 //        String locationSetting = Utility.getPreferredLocation(getActivity());
 
-        Uri orderForFassignUri = OrderContract.OrderEntry. buildOrderUri(id);
+        Uri orderForFassignUri = OrderContract.OrderEntry.CONTENT_URI;
+
+        Log.v(LOG_TAG, "Reached here3");
 
         return new CursorLoader(getActivity(),
                 orderForFassignUri,
@@ -261,10 +264,10 @@ public class FragOrders extends Fragment implements LoaderManager.LoaderCallback
         mOrderAdapter.swapCursor(null);
     }
 
-    public void setUseTodayLayout(boolean useTodayLayout) {
+/*    public void setUseTodayLayout(boolean useTodayLayout) {
         mUseTodayLayout = useTodayLayout;
         if (mOrderAdapter != null) {
             mOrderAdapter.setUseTodayLayout(mUseTodayLayout);
         }
-    }
+    }*/
 }

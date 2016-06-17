@@ -8,8 +8,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.util.Log;
 
 public class OrderProvider extends ContentProvider {
+
+
+
+    public static final String LOG_TAG = OrderProvider.class.getSimpleName();
 
     // The URI Matcher used by this content provider.
 //    private static final UriMatcher sUriMatcher = buildUriMatcher();
@@ -75,7 +80,7 @@ public class OrderProvider extends ContentProvider {
 //                    WeatherContract.WeatherEntry.COLUMN_DATE + " = ? ";
 
     private Cursor getOrderByFAssigned(Uri uri, String[] projection, String sortOrder) {
-        String fAssgined = OrderContract.OrderEntry.getFAssignedFromUri(uri);
+//        String fAssgined = OrderContract.OrderEntry.getFAssignedFromUri(uri);
 //        long startDate = WeatherContract.WeatherEntry.getStartDateFromUri(uri);
 
         String[] selectionArgs;
@@ -83,13 +88,13 @@ public class OrderProvider extends ContentProvider {
 
 
             selection = sAssignTypeSelection;
-            selectionArgs = new String[]{fAssgined};
+//            selectionArgs = new String[]{fAssgined};
 
 
         return sWeatherByLocationSettingQueryBuilder.query(mOpenHelper.getReadableDatabase(),
                 projection,
-                selection,
-                selectionArgs,
+                null,
+                null,
                 null,
                 null,
                 sortOrder
@@ -225,7 +230,18 @@ public class OrderProvider extends ContentProvider {
 
 // addition
 
-        retCursor = getOrderByFAssigned(uri, projection, sortOrder);
+        retCursor = mOpenHelper.getReadableDatabase().query(
+                        OrderContract.OrderEntry.TABLE_NAME,
+                        projection,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                );
+
+        Log.v(LOG_TAG, "Reached here4");
+//        retCursor = getOrderByFAssigned(uri, projection, sortOrder);
         retCursor.setNotificationUri(getContext().getContentResolver(), uri);
         return retCursor;
     }
@@ -297,7 +313,7 @@ public class OrderProvider extends ContentProvider {
 //addition
 
         rowsDeleted = db.delete(
-                        OrderContract.OrderEntry.TABLE_NAME, selection, selectionArgs);
+                        OrderContract.OrderEntry.TABLE_NAME, "1", null);
 
         if (rowsDeleted != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
